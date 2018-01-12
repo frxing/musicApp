@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Redirect, NavLink } from 'react-router-dom';
+import {
+    BrowserRouter as Router,
+    Route,
+    Redirect,
+    NavLink
+} from "react-router-dom";
 import logo from "../assets/images/logo.png";
 
 import Recommend from "./recommend/Recommend";
@@ -15,40 +20,39 @@ import "./App.less";
 class App extends Component {
     render() {
         return (
-			<Router>
-				<div className="app">
-					<header className="app-header">
-						<img src={logo} className="app-logo" alt="logo" />
-						<h1 className="app-title">音悦</h1>
-					</header>
-					<div className="nav-box">
-						<div className="nav-item">
-							<NavLink to="/recommend" className='nav-link' >
-								<span>推荐</span>
-							</NavLink>
-						</div>
-						<div className="nav-item">
-							<NavLink to="/ranking" className='nav-link' >
-								<span>排行榜</span>
-							</NavLink>
-						</div>
-						<div className="nav-item">
-							<NavLink to="/search" className='nav-link' >
-								<span>搜索</span>
-							</NavLink>
-						</div>
-					</div>
-					<div className="view-box">
-						<Route path="/recommend" component={Recommend} />
-						<Route path="/ranking" component={Ranking} />
-						<Route path="/search" component={Search} />
-						<Route path="/singer/:id" component={Singer}/>
-						<Redirect from="/" to="/recommend" />
-						<Route component={Recommend} />
-					</div>
-					<MusicPlayer />
-				</div>
-			</Router>
+            <Router>
+                <div className="app">
+                    <header className="app-header">
+                        <img src={logo} className="app-logo" alt="logo" />
+                        <h1 className="app-title">音悦</h1>
+                    </header>
+                    <div className="nav-box">
+                        <div className="nav-item">
+                            <NavLink to="/recommend" className="nav-link">
+                                <span>推荐</span>
+                            </NavLink>
+                        </div>
+                        <div className="nav-item">
+                            <NavLink to="/ranking" className="nav-link">
+                                <span>排行榜</span>
+                            </NavLink>
+                        </div>
+                        <div className="nav-item">
+                            <NavLink to="/search" className="nav-link">
+                                <span>搜索</span>
+                            </NavLink>
+                        </div>
+                    </div>
+                    <div className="view-box">
+                        <Route exact path="/" component={Recommend} />
+                        <Route path="/recommend" component={Recommend} />
+                        <Route path="/ranking" component={Ranking} />
+                        <Route path="/search" component={Search} />
+                        <Route path="/singer/:id" component={Singer} />
+                    </div>
+                    <MusicPlayer />
+                </div>
+            </Router>
         );
     }
 }
