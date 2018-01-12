@@ -1,6 +1,4 @@
-/**
- * 歌手类模型
- */
+
 export class Singer {
 	constructor(id, mId, name, img) {
 		this.id = id;
@@ -10,9 +8,6 @@ export class Singer {
 	}
 }
 
-/**
- * 通过搜索创建歌手对象函数
- */
 export function createSingerBySearch(data) {
 	return new Singer(
 		data.singerid,
@@ -22,9 +17,6 @@ export function createSingerBySearch(data) {
 	);
 }
 
-/**
- * 通过歌手详情创建歌手对象函数
- */
 export function createSingerByDetail(data) {
 	return new Singer(
 		data.singer_id,

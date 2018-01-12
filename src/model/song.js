@@ -1,6 +1,4 @@
-/**
- *  歌曲类模型
- */
+
 export class Song {
 	constructor(id, mId, name, img, duration, url, singer) {
 		this.id = id;
@@ -13,9 +11,6 @@ export class Song {
 	}
 }
 
-/**
- *  创建歌曲对象函数
- */
 export function createSong(data) {
 	return new Song(
 		data.songid,

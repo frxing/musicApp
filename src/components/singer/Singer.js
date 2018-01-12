@@ -1,18 +1,18 @@
-import React from "react"
-import ReactDOM from "react-dom"
-import {CSSTransition} from "react-transition-group"
-import {getTransitionEndName} from "../../util/event"
-import Header from "../../common/header/Header"
-import Scroll from "../../common/scroll/Scroll"
-import Loading from "../../common/loading/Loading"
-import {getSingerInfo} from "../../api/singer"
-import {getSongVKey} from "../../api/song"
-import {CODE_SUCCESS} from "../../api/config"
-import * as SingerModel from "../../model/singer"
-import * as SongModel from "../../model/song"
-import "./singer.less"
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import {CSSTransition} from "react-transition-group";
+import {getTransitionEndName} from "../../util/event";
+import Header from "../../common/header/Header";
+import Scroll from "../../common/scroll/Scroll";
+import Loading from "../../common/loading/Loading";
+import {getSingerInfo} from "../../api/singer";
+import {getSongVKey} from "../../api/song";
+import {CODE_SUCCESS} from "../../api/config";
+import * as SingerModel from "../../model/singer";
+import * as SongModel from "../../model/song";
+import "./singer.less";
 
-class Singer extends React.Component {
+class Singer extends Component {
 	constructor(props) {
 		super(props);
 
@@ -97,6 +97,7 @@ class Singer extends React.Component {
 	 * 监听scroll
 	 */
 	scroll = ({y}) => {
+		let headerDOM = ReactDOM.findDOMNode(this.refs.header);
 		let albumBgDOM = ReactDOM.findDOMNode(this.refs.albumBg);
 		let albumFixedBgDOM = ReactDOM.findDOMNode(this.refs.albumFixedBg);
 		let playButtonWrapperDOM = ReactDOM.findDOMNode(this.refs.playButtonWrapper);
@@ -106,6 +107,8 @@ class Singer extends React.Component {
 			} else {
 				albumFixedBgDOM.style.display = "none";
 			}
+			let bgColor = `rgba(194,17,17,${0+1*(Math.abs(y)/(albumBgDOM.offsetHeight-55))})`;
+            headerDOM.style['backgroundColor'] = bgColor;
 		} else {
 			let transform = `scale(${1 + y * 0.004}, ${1 + y * 0.004})`;
 			albumBgDOM.style["webkitTransform"] = transform;
@@ -136,7 +139,7 @@ class Singer extends React.Component {
 					</div>
 					<div className="play-wrapper" ref="playButtonWrapper">
 						<div className="play-button" onClick={this.playAll}>
-							<i className="icon-play"></i>
+							<i className="iconfont icon-bofang"></i>
 							<span>播放全部</span>
 						</div>
 					</div>
