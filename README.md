@@ -1,7 +1,13 @@
-git clone 
+#####运行方式
 
-cd MusicApp
+git clone git@github.com:frxing/musicApp.git
 
-npm install 
+######进入文件夹
 
-npm start 
+cd myapp
+
+######执行命令
+
+npm install
+
+npm start
