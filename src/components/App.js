@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, NavLink } from 'react-router-dom';
 import logo from "../assets/images/logo.png";
 
 import Recommend from "./recommend/Recommend";
@@ -39,11 +39,12 @@ class App extends Component {
 						</div>
 					</div>
 					<div className="view-box">
-						<Route exact path='/' component={Recommend} />
 						<Route path="/recommend" component={Recommend} />
 						<Route path="/ranking" component={Ranking} />
 						<Route path="/search" component={Search} />
 						<Route path="/singer/:id" component={Singer}/>
+						<Redirect from="/" to="/recommend" />
+						<Route component={Recommend} />
 					</div>
 					<MusicPlayer />
 				</div>
