@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {
     BrowserRouter as Router,
     Route,
-    Redirect,
+    Switch,
     NavLink
 } from "react-router-dom";
 import logo from "../assets/images/logo.png";
@@ -44,11 +44,13 @@ class App extends Component {
                         </div>
                     </div>
                     <div className="view-box">
-                        <Route exact path="/" component={Recommend} />
-                        <Route path="/recommend" component={Recommend} />
-                        <Route path="/ranking" component={Ranking} />
-                        <Route path="/search" component={Search} />
-                        <Route path="/singer/:id" component={Singer} />
+                        <Switch>
+                            <Route exact path="/" component={Recommend} />
+                            <Route path="/recommend" component={Recommend} />
+                            <Route path="/ranking" component={Ranking} />
+                            <Route path="/search" component={Search} />
+                            <Route path="/singer/:id" component={Singer} />
+                        </Switch>
                     </div>
                     <MusicPlayer />
                 </div>
