@@ -1,6 +1,6 @@
 >预览地址
 ```
-[link](https://frxing.github.io/musicApp/)>
+[https://frxing.github.io/musicApp/](https://frxing.github.io/musicApp/)
 
 ```
 >运行方式
