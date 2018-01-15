@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import {
-    BrowserRouter as Router,
-    Route,
-    Switch,
-    NavLink
-} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch, Redirect, NavLink} from "react-router-dom"
 import logo from "../assets/images/logo.png";
 
 import Recommend from "./recommend/Recommend";
@@ -45,11 +40,13 @@ class App extends Component {
                     </div>
                     <div className="view-box">
                         <Switch>
-                            <Route exact path="/" component={Recommend} />
+                            {/* <Route exact path="/" component={Recommend} /> */}
                             <Route path="/recommend" component={Recommend} />
                             <Route path="/ranking" component={Ranking} />
                             <Route path="/search" component={Search} />
                             <Route path="/singer/:id" component={Singer} />
+                            <Redirect from="/" to="/recommend" />
+                            <Route component={Recommend} />
                         </Switch>
                     </div>
                     <MusicPlayer />
