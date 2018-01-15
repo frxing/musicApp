@@ -1,8 +1,6 @@
 >预览地址
-```
 [https://frxing.github.io/musicApp/](https://frxing.github.io/musicApp/)
 
-```
 >运行方式
 ```
 git clone git@github.com:frxing/musicApp.git
