@@ -6,6 +6,9 @@ import "./scroll.less";
 
 class Scroll extends Component {
     componentDidUpdate() {
+        /**
+         * 在组件更新后都要重新获取组件的高度
+         */
         if (this.bScroll && this.props.refresh) {
             this.bScroll.refresh();
         }
@@ -15,7 +18,7 @@ class Scroll extends Component {
         if (!this.bScroll) {
             this.bScroll = new BScroll(this.scrollView, {
                 probeType: 3,
-                click: this.props.click
+                click: this.props.click   // 可点击
             });
             if (this.props.onScroll) {
                 this.bScroll.on("scroll", (scroll) => {

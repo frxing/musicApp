@@ -26,6 +26,8 @@ class Album extends Component {
         };
     }
     componentDidMount() {
+        var _this = this;
+        console.log('专辑页面', _this.props);
         this.setState({show: true})
         let albumBgDOM = ReactDOM.findDOMNode(this.refs.albumBg);
         let albumContainerDOM = ReactDOM.findDOMNode(this.refs.albumContainer);
@@ -92,7 +94,7 @@ class Album extends Component {
         let albumBgDOM = ReactDOM.findDOMNode(this.refs.albumBg);
 		let albumFixedBgDOM = ReactDOM.findDOMNode(this.refs.albumFixedBg);
         let playButtonWrapperDOM = ReactDOM.findDOMNode(this.refs.playButtonWrapper);
-        if (y < 0) {
+        if (y < 0) {  // 往上滑
             if (Math.abs(y) + 55 > albumBgDOM.offsetHeight) {
                 albumFixedBgDOM.style.display = 'block';
             } else {

@@ -1,6 +1,9 @@
 import jsonp from "./jsonp"
 import {URL, PARAM, OPTION} from "./config"
 
+/**
+ * 把请求接口需要的参数封装到jsonp里面
+ */
 export function getRankingList() {
 	const data = Object.assign({}, PARAM, {
 		g_tk: 5381,

@@ -23,6 +23,10 @@ class Recommend extends Component {
         };
     }
     componentDidMount() {
+        console.log('推荐页面', this.props);
+        /**
+         * 获取轮播图数据
+         */
         getCarousel().then(res => {
             if (!res) return;
             if (res.code === CODE_SUCCESS) {
@@ -38,8 +42,11 @@ class Recommend extends Component {
                 });
             }
         });
+        /**
+         * 获取推荐专辑列表    经常获取不到数据
+         */
         getNewAlbum().then(res => {
-            console.log("获取新专辑");
+            console.log("获取新专辑", res);
             if (!res) return;
             if (res.code === CODE_SUCCESS) {
                 let albumList = res.albumlib.data.list;
