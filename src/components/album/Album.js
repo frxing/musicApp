@@ -29,9 +29,7 @@ class Album extends Component {
         var _this = this;
         console.log('专辑页面', _this.props);
         this.setState({show: true})
-        let albumBgDOM = ReactDOM.findDOMNode(this.refs.albumBg);
-        let albumContainerDOM = ReactDOM.findDOMNode(this.refs.albumContainer);
-        albumContainerDOM.style.top = albumBgDOM.offsetHeight + "px";
+        this.albumContainerDOM.style.top = this.albumBgDOM.offsetHeight + "px";
         getAlbumInfo(this.props.match.params.id).then(res => {
             if (!res) return;
             if (res.code === CODE_SUCCESS) {
@@ -91,22 +89,19 @@ class Album extends Component {
 	}
     scroll = ({y}) => {
         let headerDOM = ReactDOM.findDOMNode(this.refs.header);
-        let albumBgDOM = ReactDOM.findDOMNode(this.refs.albumBg);
-		let albumFixedBgDOM = ReactDOM.findDOMNode(this.refs.albumFixedBg);
-        let playButtonWrapperDOM = ReactDOM.findDOMNode(this.refs.playButtonWrapper);
         if (y < 0) {  // 往上滑
-            if (Math.abs(y) + 55 > albumBgDOM.offsetHeight) {
-                albumFixedBgDOM.style.display = 'block';
+            if (Math.abs(y) + 55 > this.albumBgDOM.offsetHeight) {
+                this.albumFixedBgDOM.style.display = 'block';
             } else {
-                albumFixedBgDOM.style.display = "none";
+                this.albumFixedBgDOM.style.display = "none";
             }
-            let bgColor = `rgba(194,17,17,${0+1*(Math.abs(y)/(albumBgDOM.offsetHeight-55))})`;
+            let bgColor = `rgba(194,17,17,${0+1*(Math.abs(y)/(this.albumBgDOM.offsetHeight-55))})`;
             headerDOM.style['backgroundColor'] = bgColor;
         } else {
             let transform = `scale(${1 + y * 0.004}, ${1 + y * 0.004})`;
-			albumBgDOM.style["webkitTransform"] = transform;
-			albumBgDOM.style["transform"] = transform;
-			playButtonWrapperDOM.style.marginTop = `${y}px`;
+			this.albumBgDOM.style["webkitTransform"] = transform;
+			this.albumBgDOM.style["transform"] = transform;
+			this.playButtonWrapperDOM.style.marginTop = `${y}px`;
         }
     }
     render() {
@@ -125,27 +120,27 @@ class Album extends Component {
                 <Header title={album.name} ref="header" />
                 <div style={{ position: "relative" }}>
                     <div
-                        ref="albumBg"
+                        ref={(div) => {this.albumBgDOM = div;}}
                         className="album-img"
                         style={{ backgroundImage: `url(${album.img})` }}
                     >
                         <div className="filter" />
                     </div>
                     <div
-                        ref="albumFixedBg"
+                        ref={(div) => {this.albumFixedBgDOM = div;}}
                         className="album-img fixed"
                         style={{ backgroundImage: `url(${album.img})` }}
                     >
                         <div className="filter" />
                     </div>
-                    <div className="play-wrapper" ref="playButtonWrapper">
+                    <div className="play-wrapper" ref={(div) => {this.playButtonWrapperDOM = div;}}>
                         <div className="play-button" onClick={this.playAll}>
                             <i className="iconfont icon-bofang" />
                             <span>播放全部</span>
                         </div>
                     </div>
                 </div>
-                <div ref="albumContainer" className="album-container">
+                <div ref={(div) => {this.albumContainerDOM = div;}} className="album-container">
                     <div
                         className="album-scroll"
                         style={
