@@ -28,9 +28,9 @@ class RankingInfo extends React.Component {
         this.setState({
             show: true
         });
-		let rankingBgDOM = ReactDOM.findDOMNode(this.refs.rankingBg);
-		let rankingContainerDOM = ReactDOM.findDOMNode(this.refs.rankingContainer);
-		rankingContainerDOM.style.top = rankingBgDOM.offsetHeight + "px";
+		// let rankingBgDOM = ReactDOM.findDOMNode(this.refs.rankingBg);
+		// let rankingContainerDOM = ReactDOM.findDOMNode(this.refs.rankingContainer);
+		this.rankingContainerDOM.style.top = this.rankingBgDOM.offsetHeight + "px";
 
 		getRankingInfo(this.props.match.params.id).then((res) => {
 			//console.log("获取排行榜详情：");
@@ -97,22 +97,20 @@ class RankingInfo extends React.Component {
 	 */
 	scroll = ({y}) => {
         let headerDOM = ReactDOM.findDOMNode(this.refs.header);
-		let rankingBgDOM = ReactDOM.findDOMNode(this.refs.rankingBg);
-		let rankingFixedBgDOM = ReactDOM.findDOMNode(this.refs.rankingFixedBg);
-		let playButtonWrapperDOM = ReactDOM.findDOMNode(this.refs.playButtonWrapper);
+		
 		if (y < 0) {
-			if (Math.abs(y) + 55 > rankingBgDOM.offsetHeight) {
-				rankingFixedBgDOM.style.display = "block";
+			if (Math.abs(y) + 55 > this.rankingBgDOM.offsetHeight) {
+				this.rankingFixedBgDOM.style.display = "block";
 			} else {
-				rankingFixedBgDOM.style.display = "none";
+				this.rankingFixedBgDOM.style.display = "none";
             }
-            let bgColor = `rgba(194,17,17,${0+1*(Math.abs(y)/(rankingBgDOM.offsetHeight-55))})`;
+            let bgColor = `rgba(194,17,17,${0+1*(Math.abs(y)/(this.rankingBgDOM.offsetHeight-55))})`;
             headerDOM.style['backgroundColor'] = bgColor;
 		} else {
 			let transform = `scale(${1 + y * 0.004}, ${1 + y * 0.004})`;
-			rankingBgDOM.style["webkitTransform"] = transform;
-			rankingBgDOM.style["transform"] = transform;
-			playButtonWrapperDOM.style.marginTop = `${y}px`;
+			this.rankingBgDOM.style["webkitTransform"] = transform;
+			this.rankingBgDOM.style["transform"] = transform;
+			this.playButtonWrapperDOM.style.marginTop = `${y}px`;
 		}
 	}
 	render() {
@@ -131,20 +129,20 @@ class RankingInfo extends React.Component {
 			<div className="ranking-info">
 				<Header ref="header" title={ranking.title}></Header>
 				<div style={{position:"relative"}}>
-					<div ref="rankingBg" className="ranking-img" style={{backgroundImage: `url(${ranking.img})`}}>
+					<div ref={(rankingBg) => {this.rankingBgDOM = rankingBg}} className="ranking-img" style={{backgroundImage: `url(${ranking.img})`}}>
 						<div className="filter"></div>
 					</div>
-					<div ref="rankingFixedBg" className="ranking-img fixed" style={{backgroundImage: `url(${ranking.img})`}}>
+					<div ref={(rankingFixedBg) => {this.rankingFixedBgDOM = rankingFixedBg;}} className="ranking-img fixed" style={{backgroundImage: `url(${ranking.img})`}}>
 						<div className="filter"></div>
 					</div>
-					<div className="play-wrapper" ref="playButtonWrapper">
+					<div className="play-wrapper" ref={(playButtonWrapper) => {this.playButtonWrapperDOM = playButtonWrapper;}}>
 						<div className="play-button" onClick={this.playAll}>
 							<i className="iconfont icon-bofang"></i>
 							<span>播放全部</span>
 						</div>
 					</div>
 				</div>
-				<div ref="rankingContainer" className="ranking-container">
+				<div ref={(rankingContainer) => {this.rankingContainerDOM = rankingContainer}} className="ranking-container">
 					<div className="ranking-scroll" style={this.state.loading === true ? {display:"none"} : {}}>
 						<Scroll refresh={this.state.refreshScroll} onScroll={this.scroll}>
 							<div className="ranking-wrapper">

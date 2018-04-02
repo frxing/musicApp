@@ -35,11 +35,6 @@ class Player extends Component {
 		}
 	}
 	componentDidMount() {
-		this.audioDOM = ReactDOM.findDOMNode(this.refs.audio);
-		this.singerImgDOM = ReactDOM.findDOMNode(this.refs.singerImg);
-		this.playerDOM = ReactDOM.findDOMNode(this.refs.player);
-		this.playerBgDOM = ReactDOM.findDOMNode(this.refs.playerBg);
-
 		this.audioDOM.addEventListener("canplay", () => {
 				this.audioDOM.play();
 				this.startImgRotate();
@@ -288,7 +283,7 @@ class Player extends Component {
 					onExited={() => {
 						this.playerDOM.style.display = "none";
 					}}>
-				<div className="player" ref="player">
+				<div className="player" ref={(player) => {this.playerDOM = player} }>
 					<div className="header">
 						<span className="header-back" onClick={this.hidePlayer}>
 							<i className="iconfont icon-return"></i>
@@ -303,7 +298,7 @@ class Player extends Component {
 						</div>
 					</div>
 					<div className="singer-middle">
-						<div className="singer-img" ref="singerImg">
+						<div className="singer-img" ref={(singerImg) => {this.singerImgDOM = singerImg}}>
 							<img src={playBg} alt={song.name} onLoad={
 								(e) => {
 									/*图片加载完成后设置背景，防止图片加载过慢导致没有背景*/
@@ -342,8 +337,8 @@ class Player extends Component {
 							</div>
 						</div>
 					</div>
-					<div className="player-bg" ref="playerBg"></div>
-					<audio ref="audio"></audio>
+					<div className="player-bg" ref={(playerBg) => {this.playerBgDOM = playerBg}}></div>
+					<audio ref={(audio) => {this.audioDOM = audio}}></audio>
 				</div>
 				</CSSTransition>
 				<MiniPlayer song={song} progress={this.state.playProgress} 
