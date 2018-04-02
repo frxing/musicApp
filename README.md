@@ -8,7 +8,7 @@ git clone git@github.com:frxing/musicApp.git
 
 >进入文件夹
 ```
-cd myapp
+cd musicApp
 ```
 >执行命令
 ```
