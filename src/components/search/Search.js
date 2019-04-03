@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import Scroll from "../../common/scroll/Scroll";
 import Loading from "../../common/loading/Loading";
 import { getHotKey, search } from "../../api/search";
@@ -67,7 +67,7 @@ class Search extends Component {
 					});
 					break;
 				case "song":
-					let nativeEvent = e.nativeEvent;
+					// let nativeEvent = e.nativeEvent;
 					getSongVKey(data.mId).then((res) => {
 						if (res) {
 							if(res.code === CODE_SUCCESS) {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import {CSSTransition} from "react-transition-group";
-import {getTransitionEndName} from "../../util/event";
+// import {getTransitionEndName} from "../../util/event";
 import Header from "../../common/header/Header";
 import Scroll from "../../common/scroll/Scroll";
 import Loading from "../../common/loading/Loading";
